@@ -24,7 +24,7 @@ def data_preparing(net, dataset_type='cifar10', device = torch.device('cuda:0'),
     if dataset_type =='cifar10':
         batch = 64
         rtest = unpickle(
-            "./cifar-10-batches-py/test_batch")
+            "YOUR_PATH_OF_CIFAR10")
         test_label = torch.Tensor(np.array(rtest['labels'],dtype=np.float32)).type(torch.LongTensor) 
         test_data = torch.Tensor(np.array(rtest['data'].reshape(rtest['data'].shape[0],3,32,32),dtype=np.float32))/255.0
          
@@ -32,22 +32,22 @@ def data_preparing(net, dataset_type='cifar10', device = torch.device('cuda:0'),
     if dataset_type =='imagenet':
         batch = 32
         val_mapping = pd.read_csv(
-            '/supplies/LOC_synset_mapping.csv')  
+            './supplies/LOC_synset_mapping.csv')  
         val_mapping_dict=val_mapping.to_dict()
         values_keys_mapping = {v:k for k,v in val_mapping_dict['labelName'].items()}
         val_solution = pd.read_csv(
-            '/supplies/LOC_val_solution.csv')  
+            './supplies/LOC_val_solution.csv')  
         val_solution_dict=val_solution.to_dict()
         values_keys = {v:k for k,v in val_solution_dict['ImageId'].items()}
            #create dataset 
         test_data = []
         test_label = []
         dirs = os.listdir( 
-            './ILSVRC2012_img_val/' )
+            './supplies/ILSVRC_img_val_samples/' )
         k=0
         for i in dirs:
             img = Image.open(
-                './ILSVRC2012_img_val/'+i)
+                './supplies/ILSVRC_img_val_samples/'+i)
             img_tensor = transforms.Compose([transforms.Resize(256),transforms.CenterCrop(224),transforms.ToTensor()])(img)
             if img_tensor.shape[0] == 3 :
                 k+=1
@@ -68,8 +68,7 @@ def data_preparing(net, dataset_type='cifar10', device = torch.device('cuda:0'),
         batch_y = test_label[i:i+batch]  
         
         with torch.no_grad():
-        	labelpredict =net(batch_X.to(device)).cpu()
-        
+            labelpredict =net(batch_X.to(device)).cpu()
         pre = torch.argmax(labelpredict, 1)
         ind = pre == batch_y
         att_data.append(batch_X[ind])

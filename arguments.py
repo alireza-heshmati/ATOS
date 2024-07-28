@@ -54,23 +54,23 @@ def arg():
     parser.add_argument('--plot', type= bool, default= True,
                         help='ploting some outputs of attack and originals')
     
-    parser.add_argument('--number_of_plots', type= int, default= 8,
+    parser.add_argument('--number_of_plots', type= int, default= 4,
                         help='number of images for ploting')
     
     
     
     # Original attack setting
     
-    parser.add_argument('--grouped_mode', type= bool, default= False,
-                        help='grouped mode for attack')
+    parser.add_argument('--group_mode', type= bool, default= False,
+                        help='group mode for attack')
     
-    parser.add_argument('--grouped_stride', type= int, default= 2,
-                        help='stride of splitting of grouped window')
+    parser.add_argument('--group_stride', type= int, default= 2,
+                        help='stride of splitting of group window')
     
-    parser.add_argument('--grouped_len_window', type= int, default= 16,
-                        help='length of grouped window')
+    parser.add_argument('--group_len_window', type= int, default= 16,
+                        help='length of group window')
     
-    parser.add_argument('--OSl0_grad_exec', type= str, default= "manual",
+    parser.add_argument('--OSL0_grad_exec', type= str, default= "torch",
                         help='How to compute gradient of group loss, manual or torch')
     
     parser.add_argument('--c', type= float, default= 1,
@@ -80,17 +80,17 @@ def arg():
                         help='scale of objective function relaxation')
     
     # c_s in paper for EWA and PWA
-    parser.add_argument('--c_l0', type= float, default= 1, # 100
+    parser.add_argument('--c_l0', type= float, default= 1, #
                         help='LO norm loss relaxation')
     
     # c_s in paper for GWA
-    parser.add_argument('--c_grouped', type= float, default= 0,
-                        help='grouped loss relaxation')
+    parser.add_argument('--c_group', type= float, default= 0,
+                        help='group loss relaxation')
     
-    parser.add_argument('--c_linf', type= float, default= 0, #10
+    parser.add_argument('--c_linf', type= float, default= 0, #
                         help='linf loss relaxation')
     
-    parser.add_argument('--p', type= float, default= 1e4, # 1e4
+    parser.add_argument('--p', type= float, default= 1e4, # 
                         help='p in linf loss function, LSEAp')
     
     parser.add_argument('--eta_linf', type= float, default= 1,
