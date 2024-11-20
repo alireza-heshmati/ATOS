@@ -1,6 +1,8 @@
+
 """
 @author: Alireza Heshmati
 """
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -101,27 +103,7 @@ def perturbated_pixels(deltas_pixels):
 # defining number of perturbed blocks
 def number_of_perturbated_blocks(blocks,deltas):
     return np.array(1), np.array(0) , np.array(1)
-"""
-    deltas = deltas.cpu().detach().numpy()
-    blocks = blocks.cpu().detach().numpy()
-    deltas = np.sum(abs(deltas) , axis=1)/3.1
-    t = np.ones((len(deltas),len(blocks),deltas.shape[1],deltas.shape[2]))
-    if len(blocks.shape) == 4:
-        blocks = np.sum(blocks , axis=1)
-    B = t* blocks
-    for i in range(len(deltas)):
-        t[i] = B[i] * deltas[i]
-    b = abs(t*2-1)
-    num_blocks = []
-    for i in range(len(deltas)):
-        num_b = 0
-        for j in range(len(blocks)):
-            if any((b[i,j] != 1).flatten()):
-                num_b+=1
-        num_blocks.append(num_b)
-    num_blocks = torch.tensor(num_blocks, dtype=torch.float) / len(blocks)
-    return torch.mean(num_blocks).numpy(), torch.std(num_blocks, unbiased=False).numpy() , torch.max(num_blocks).numpy()
-"""
+
 # defining number of perturbed pixels
 def perturbations_number(deltas_pixels):
     if len(deltas_pixels.shape) == 3 :
@@ -205,7 +187,7 @@ def plot_results(or_im, adv_im, correct_labels, attack_labels,imagenet_or_cifar1
             axs[i//2,3*(i%2)+2].axis('off')
             
     if imagenet_or_cifar10 == 'imagenet':
-        with open("E:/Attacks/Attacks/datasets_and_pretrained_weights_extra/pytorch_hub_master_imagenet_classes.txt", "r") as f:
+        with open("./supplies/pytorch_hub_master_imagenet_classes.txt", "r") as f:
             categories = [s.strip() for s in f.readlines()]       
             
         plt.figure()

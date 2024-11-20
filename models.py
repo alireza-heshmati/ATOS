@@ -70,6 +70,12 @@ def pretrained_model(model_name):
                     dataset='imagenet',
                     threat_model='Linf')
     
+    elif model_name == 'Amini2024MeanSparse':
+        # Load a model from the model zoo
+        net = load_model(model_name = model_name,
+                    dataset='imagenet',
+                    threat_model='Linf')
+    
     elif model_name == 'vits16' :
         net = timm.create_model('vit_small_patch16_224', pretrained=True)
         normalize_layer= Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))

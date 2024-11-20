@@ -4,7 +4,7 @@ def arg():
     '''
     input hyper parameters
     '''
-    parser = argparse.ArgumentParser(description='EW,_PW_and_GW_Attacks')
+    parser = argparse.ArgumentParser(description='ATOS: Element-Wise,_Pixel-Wise_and_Group-Wise_Attacks')
     
     #general setting
     

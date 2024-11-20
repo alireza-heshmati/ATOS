@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 26 07:18:17 2022
 
-@author: arh
 """
+@author: Alireza Heshmati
+"""
+
 import numpy as np
 from six.moves import cPickle as pickle
 import torch
