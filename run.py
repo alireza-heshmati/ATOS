@@ -13,7 +13,7 @@ import copy
 from models import pretrained_model
 from dataio import data_preparing
 from execution import execute_attack
-from utils import print_norm_and_accuracy, plot_results, calculate_result, creat_blocks
+from utils import print_norm_and_accuracy, plot_results, calculate_result, create_blocks
 from arguments import arg
 
 
@@ -78,7 +78,7 @@ args.c_group = 0.15
 adv_deltas = torch.zeros_like(attack_data_test[:last])
 adv_acc = torch.ones_like(attack_label_test[:last]).numpy()
 
-blocks = creat_blocks(stride = args.grouped_len_window ,len_window = args.grouped_len_window,
+blocks = create_blocks(stride = args.grouped_len_window ,len_window = args.grouped_len_window,
                           size_of_image = args.size_of_image,number_of_channel = args.number_of_channel)
 
 

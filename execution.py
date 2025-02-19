@@ -4,7 +4,7 @@
 """
 
 import torch
-from utils import creat_targets
+from utils import create_targets
 from attack_utils import original_attack, original_attack_GPU
 import copy
     
@@ -21,7 +21,7 @@ def execute_attack(model, images, labels,blocks,args, device):
     # initialization 
     outputs = model(images) 
     one_hot_labels = torch.eye(num_class)[labels.to(torch.device('cpu'))].to(device)
-    targets = creat_targets(outputs, one_hot_labels, args.target_type,device)
+    targets = create_targets(outputs, one_hot_labels, args.target_type,device)
     
     adv_deltas = torch.zeros_like(images)
     adv_acc = torch.zeros_like(labels).float().cpu().detach()

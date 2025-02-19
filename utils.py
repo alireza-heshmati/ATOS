@@ -9,7 +9,7 @@ import torch.nn as nn
 import matplotlib.pyplot as plt
 
 # Creating attack target according input dataset 
-def creat_targets(main_outputs, one_hot_labels, target_type,device):
+def create_targets(main_outputs, one_hot_labels, target_type,device):
     if target_type == 'Best':
         targets = torch.argmax((1-0.9*one_hot_labels)*(main_outputs-1e5*one_hot_labels), dim=1)
     
@@ -63,7 +63,7 @@ def objective_f(model_outputs, one_hot_labels, targets_, device, o_f_type = 'CW'
     return o_f
 
 # create blocks for grouping manually for group-wise attack
-def creat_blocks(stride = 2,len_window = 4,size_of_image = 32,number_of_channel = 3):
+def create_blocks(stride = 2,len_window = 4,size_of_image = 32,number_of_channel = 3):
     num_row_block = int(size_of_image/stride)
     B = np.zeros((num_row_block**2,number_of_channel,size_of_image,size_of_image))
     num = 0

@@ -70,7 +70,7 @@ def pretrained_model(model_name):
                     dataset='imagenet',
                     threat_model='Linf')
     
-    elif model_name == 'Amini2024MeanSparse':
+    elif model_name == 'Amini2024MeanSparse_Swin-L':
         # Load a model from the model zoo
         net = load_model(model_name = model_name,
                     dataset='imagenet',
